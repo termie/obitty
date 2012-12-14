@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 import json
 import os
+import re
 import sys
 
 import bs4
+
+
+RE_ALPHA = re.compile(r'[\W]+')
 
 
 def find_obit(html):
@@ -35,6 +39,13 @@ def find_obit(html):
     ob['text'] = '\n'.join(ob['text'][1:])
     if ob['name'].startswith('Share your'):
       return None
+
+    ob['stripped_name'] = RE_ALPHA.sub(' ', ob['name'])
+    name_parts = ob['stripped_name'].split()
+    ob['stripped_text'] = ob['text']
+    for part in name_parts:
+      ob['stripped_text'] = ob['stripped_text'].replace(part, 'XXX')
+
     return ob
   return None
 

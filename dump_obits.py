@@ -39,7 +39,7 @@ def find_obit(html):
   return None
 
 
-def main(target):
+def main_dir(target):
   files = os.listdir(target)
   obs = []
   for f in files:
@@ -50,6 +50,24 @@ def main(target):
   print json.dumps(obs, indent=4)
 
 
+def main_list(stream):
+  obs = []
+  for path in stream:
+    path = path.strip()
+    obs.append(find_obit(open(path).read()))
+  obs = [x for x in obs if x]
+  print json.dumps(obs, indent=4)
+
+
 if __name__ == '__main__':
-  target = sys.argv[1]
-  main(target)
+  #cmd = sys.argv[1]
+  #if len(sys.argv) < 3:
+  #  cmd = 'dir'
+  #  target = sys.argv[1]
+  #else:
+  #  target = sys.argv[2]
+
+  #if cmd == 'dir':
+  #  main_dir(target)
+  #else:
+  main_list(sys.stdin)

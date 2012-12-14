@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <title>Lasting Statement</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="static/screen.css" rel="stylesheet">
+    <script src="static/jquery-1.7.2.js"></script>
+    <!--<script src="static/jquery.lazyload.js"></script>-->
+    <script src="static/jquery.scrollto.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-32949975-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="span10 offset1 card">
+      <h1>Lasting Statement</h1>
+      <p class="statement">
+         Scroll down to find the last statements, and sometimes photographs,
+         of men and women who have been executed by the state of Texas
+         since 1982.
+      </p>
+      <hr />
+      <p style="color: #CCC">You can use k/j, left/right or up/down to navigate, too.</p>
+    </div>
+    {% include "templates/_offenders.html" %}
+    <div class="span10 offset1 card">
+      <p>These people were human beings much like you or I, some quite
+      young, and they experienced love and fear in their lives.
+      </p><p>
+      Some were repentant, some were acceptant, some may have been innocent.
+      </p><p>
+      All of them looked their own death straight in the eye.
+      </p>
+    </div>
+    <div class="span10 offset1" style="color: #CCC; text-align: right;">
+      <p style="padding-right: 10px;">project by <a href="http://term.ie/blog/lasting-statement">termie</a>
+    </div>
+
+    <script type="text/javascript">
+    // $('img').lazyload({
+    //  effect: "fadeIn"
+    // });
+
+    $(document.documentElement).keydown(function(event) {
+      var key = event.keyCode || event.which;
+      if (key === 40 || key === 39 || key === 74) {
+        var curr = $("#current");
+        if (curr.html()) {
+          var next = curr.next();
+          curr.attr('id', '')
+          next.attr('id', 'current')
+          curr = next;
+        } else {
+          $('.card').first().attr('id', 'current');
+        }
+        $("#current").ScrollTo()
+        return false;
+      } else if (key === 38 || key === 37 || key === 75) {
+        var curr = $("#current");
+        if (curr.html()) {
+          var next = curr.prev();
+          curr.attr('id', '')
+          next.attr('id', 'current')
+          curr = next;
+        } else {
+          $('.card').first().attr('id', 'current');
+        }
+        $("#current").ScrollTo()
+        return false;
+      }
+    });
+    </script>
+  </body>
+</html>
